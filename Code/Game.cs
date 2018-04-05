@@ -20,11 +20,11 @@ namespace JamTemplate
 
         #region Methods
 
-        public Game()
+        public Game(GameState s)
         {
 
-            _state = new StateMenu();
-
+            //_state = s;
+            SwitchState(s);
             //TODO  Default values, replace with correct ones !
             SmartSprite._scaleVector = new Vector2f(2.0f, 2.0f);
             ScreenEffects.Init(new Vector2u(800, 600));
@@ -57,6 +57,7 @@ namespace JamTemplate
             {
                 _timeTilNextInput -= deltaT;
             }
+
             TimeObject to = Timing.Update(deltaT);
             Input.Update();
 
@@ -84,7 +85,7 @@ namespace JamTemplate
 
             Game._state = gs;
 
-            Game._state.OnStart();
+            Game._state.Init();
         }
 
         

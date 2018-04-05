@@ -12,7 +12,7 @@ namespace JamUtilities
 
         public GameState()
         {           
-            Init();
+            Create();
         }
 
         public void Add(IGameObject go)
@@ -21,17 +21,18 @@ namespace JamUtilities
         }
 
         /// <summary>
-        /// function will be called upon construction
+        /// function will be called upon construction Do only basic (lightwight) construction here
         /// </summary>
-        public virtual void Init ()
+        public virtual void Create ()
         {
             _objects = new List<IGameObject>();
         }
 
         /// <summary>
-        /// function will be called when this state becomes active
+        /// function will be called when this state becomes active 
+        /// Load Resources here
         /// </summary>
-        public virtual void OnStart()
+        public virtual void Init()
         {
 
         }
@@ -57,11 +58,11 @@ namespace JamUtilities
             return false;
         }
 
-        virtual public void Update(TimeObject timeObject)
+        virtual public void Update(TimeObject to)
         {
             foreach(IGameObject go in _objects)
             {
-                go.Update(timeObject);
+                go.Update(to);
             }
         }
     }

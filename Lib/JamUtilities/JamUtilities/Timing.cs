@@ -17,6 +17,9 @@ namespace JamUtilities
         public static bool IsInPause {get; private set;}
         private static float _pauseTimer;
 
+        private static float MaxFrameTime = 1.0f;
+
+
         public static TimeObject Update (float deltaT)
         {
             if(IsInPause)
@@ -30,7 +33,9 @@ namespace JamUtilities
             }
 
             ElapsedRealTime = deltaT;
-            ElapsedGameTime = deltaT*TimeFactor * ((IsInPause) ? 0.0f:1.0f);
+            if (ElapsedGameTime > MaxFrameTime)
+                ElapsedGameTime = MaxFrameTime;
+            ElapsedGameTime = ElapsedRealTime * TimeFactor * ((IsInPause) ? 0.0f:1.0f);
             TimeObject to = new TimeObject(ElapsedGameTime, ElapsedRealTime, IsInPause);
             return to;
         }

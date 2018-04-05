@@ -13,11 +13,12 @@ namespace JamTemplate
     {
         //private Animation an;
         private SmartSprite an;
+        
 
         public override void Init()
         {
             base.Init();
-
+            
             //an = new Animation("../GFX/Soldier.png", new Vector2u(24, 24));
             //an.Add("idle", new List<int>(new int[] { 0, 1, 2, 3, 4, 5 }), 0.3f);
             //an.Play("idle");

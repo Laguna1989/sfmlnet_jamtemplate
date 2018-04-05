@@ -22,7 +22,7 @@ namespace JamTemplate
 
         static void Main(string[] args)
         {
-            var applicationWindow = new RenderWindow(new VideoMode(800, 600, 32), "$WindowTitle$");
+            var applicationWindow = new RenderWindow(new VideoMode(GP.WindowSize.X, GP.WindowSize.Y, 32), "$WindowTitle$");
 
             //////////////////////////////////////////////////////////////////////////////
             // setting up global properties
@@ -50,13 +50,13 @@ namespace JamTemplate
 
             applicationWindow.Closed += new EventHandler(OnClose);
 
-            Game myGame = new Game();
+            Game myGame = new Game(new StateIntro());
 
             JamUtilities.Mouse.Window = applicationWindow;
 
             int startTime = Environment.TickCount;
             int endTime = startTime;
-            float time = 16.7f; // 60 fps -> 16.7 ms per frame
+            float time = 16.7f/1000; // 60 fps -> 16.7 ms per frame
 
             while (applicationWindow.IsOpen())
             {

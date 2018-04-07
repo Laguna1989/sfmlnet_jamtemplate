@@ -13,7 +13,9 @@ namespace JamTemplate
     {
         //private Animation an;
         private SmartSprite an;
-        
+        private Shape _overlay;
+        private float _fadeInTime = 1.25f;
+
 
         public override void Init()
         {

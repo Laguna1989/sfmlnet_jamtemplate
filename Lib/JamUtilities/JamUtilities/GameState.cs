@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SFML.Graphics;
+using SFML.Window;
 
 namespace JamUtilities
 {
     public class GameState : IGameObject
     {
         public List<IGameObject> _objects;
+
+        protected Shape _overlay;
+        
 
         public GameState()
         {           
@@ -34,7 +38,10 @@ namespace JamUtilities
         /// </summary>
         public virtual void Init()
         {
+            _overlay = new RectangleShape(new Vector2f(GP.WindowSize.X, GP.WindowSize.Y));
+            _overlay.FillColor = new Color(0, 0, 0, 255);
 
+            Tweens.ShapeAlphaTween.createAlphaTween(_overlay);
         }
 
         virtual public void Draw(RenderWindow rw)
@@ -43,6 +50,11 @@ namespace JamUtilities
             {
                 go.Draw(rw);
             }
+        }
+
+        virtual public void DrawOverlay(RenderWindow rw)
+        {
+            rw.Draw(_overlay);
         }
 
         virtual public void GetInput()

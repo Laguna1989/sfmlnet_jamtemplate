@@ -55,7 +55,9 @@
     <Compile Include="AreatricCloud.cs" />
     <Compile Include="EnumUtil.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="Tweens\Tween.cs" />
     <Compile Include="GlowSpriteCreator.cs" />
+    <Compile Include="GP.cs" />
     <Compile Include="IGameObject.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="ScreenEffects\ScreenDarkenLineEffect.cs" />
@@ -85,8 +87,12 @@
     <Compile Include="SmartText.cs" />
     <Compile Include="SpriteTrail.cs" />
     <Compile Include="TextureManager.cs" />
+    <Compile Include="TimeManager.cs" />
     <Compile Include="TimeObject.cs" />
+    <Compile Include="Timer.cs" />
     <Compile Include="Timing.cs" />
+    <Compile Include="Tweens\TweenManager.cs" />
+    <Compile Include="Tweens\AlphaTween.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

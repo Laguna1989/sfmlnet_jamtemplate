@@ -24,6 +24,9 @@ namespace JamTemplate
         {
             var applicationWindow = new RenderWindow(new VideoMode(GP.WindowSize.X, GP.WindowSize.Y, 32), "$WindowTitle$");
 
+            applicationWindow.Clear();
+            applicationWindow.Display();
+
             //////////////////////////////////////////////////////////////////////////////
             // setting up global properties
             SmartSprite._scaleVector = new Vector2f(2.0f, 2.0f);

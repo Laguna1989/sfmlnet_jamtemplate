@@ -15,10 +15,11 @@ void main()
     }
     else
     {
-        float dx = strength * (1.0 / 512.0);
-        float dy = strength * (1.0 / 512.0);
+        float dx = strength * (1.0 / 800.0);
+        float dy = strength * (1.0 / 600.0);
 
-        vec2 coord = vec2(
+        vec2 coord = vec2
+		(
                 dx * floor(gl_TexCoord[0].x / dx),
                 dy * floor(gl_TexCoord[0].y / dy)
         );

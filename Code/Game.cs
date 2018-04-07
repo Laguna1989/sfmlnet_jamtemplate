@@ -4,6 +4,7 @@ using JamUtilities.Particles;
 using JamUtilities.ScreenEffects;
 using SFML.Graphics;
 using SFML.Window;
+using JamUtilities.Tweens;
 
 namespace JamTemplate
 {
@@ -60,7 +61,8 @@ namespace JamTemplate
 
             TimeObject to = Timing.Update(deltaT);
             Input.Update();
-
+            TweenManager.Update(to);
+            TimeManager.Update(to);
             _state.Update(to);
 
             CanBeQuit = false;
@@ -71,6 +73,8 @@ namespace JamTemplate
         {
             rw.Clear();
             _state.Draw(rw);
+
+            _state.DrawOverlay(rw);
         }
 
 

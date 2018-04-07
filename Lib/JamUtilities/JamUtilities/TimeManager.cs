@@ -47,5 +47,11 @@ namespace JamUtilities
                 _allTimers.Add(t);
             }
         }
+
+        public static void Clear()
+        {
+            Initialize();
+            _allTimers.Clear();
+        }
     }
 }

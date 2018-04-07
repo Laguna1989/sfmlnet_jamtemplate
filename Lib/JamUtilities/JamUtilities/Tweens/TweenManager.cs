@@ -49,6 +49,11 @@ namespace JamUtilities
                     _alltweens.Add(t);
                 }
             }
+            public static void Clear()
+            {
+                Initialize();
+                _alltweens.Clear();
+            }
         }
     }
 }

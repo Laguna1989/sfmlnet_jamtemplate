@@ -89,6 +89,9 @@ namespace JamTemplate
 
             Game._state = gs;
 
+            TweenManager.Clear();
+            TimeManager.Clear();
+
             Game._state.Init();
         }
 

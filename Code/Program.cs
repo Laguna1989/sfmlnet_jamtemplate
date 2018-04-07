@@ -86,6 +86,7 @@ namespace JamTemplate
                     }
                 }
 
+
                 JamUtilities.Mouse.Update();
 
                 myGame.Update(time);

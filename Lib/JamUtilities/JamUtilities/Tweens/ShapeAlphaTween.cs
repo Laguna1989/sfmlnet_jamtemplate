@@ -24,7 +24,6 @@ namespace JamUtilities
 
             public void DoAlphaTween()
             {
-
                 float t = age / maxTime;
                 float dy = valueEnd - valueStart;
                 float val = valueStart + dy * t;

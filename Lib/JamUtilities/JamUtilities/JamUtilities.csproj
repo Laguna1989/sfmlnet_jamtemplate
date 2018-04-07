@@ -92,7 +92,7 @@
     <Compile Include="Timer.cs" />
     <Compile Include="Timing.cs" />
     <Compile Include="Tweens\TweenManager.cs" />
-    <Compile Include="Tweens\AlphaTween.cs" />
+    <Compile Include="Tweens\ShapeAlphaTween.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

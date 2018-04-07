@@ -83,15 +83,13 @@ namespace JamTemplate
         /// </summary>
         /// <param name="gs">the new gamestate</param>
         public static void SwitchState (GameState gs)
-        {
+        {   
             if (gs == null)
                 throw new ArgumentNullException("gs","cannot switch to a gamestate which is null!");
 
             Game._state = gs;
 
-            TweenManager.Clear();
-            TimeManager.Clear();
-
+            
             Game._state.Init();
         }
 
@@ -113,6 +111,7 @@ namespace JamTemplate
 
             SmartText.DrawText("Created $Date$", TextAlignment.MID, new Vector2f(400.0f, 500.0f), 0.75f, rw);
             ScreenEffects.GetStaticEffect("vignette").Draw(rw);
+            ScreenEffects.GetDynamicEffect("darkenLines").Draw(rw);
         }
 
         

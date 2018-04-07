@@ -9,6 +9,8 @@ namespace JamUtilities
     {
         private static List<Timer> _allTimers = null;
 
+        private static bool clearMe = false;
+
         private static void Initialize()
         {
             if (_allTimers == null)
@@ -18,11 +20,17 @@ namespace JamUtilities
         public static void Update(TimeObject to)
         {
             Initialize();
-            foreach (Timer t in _allTimers)
+            foreach(Timer t in _allTimers)
             {
                 t.Update(to.ElapsedGameTime);
             }
             CleanUp();
+            if (clearMe)
+            {
+                _allTimers.Clear();
+                clearMe = false;
+            }
+
         }
 
         private static void CleanUp()
@@ -51,7 +59,7 @@ namespace JamUtilities
         public static void Clear()
         {
             Initialize();
-            _allTimers.Clear();
+            clearMe = true;
         }
     }
 }

@@ -10,6 +10,7 @@ namespace JamUtilities
         public class TweenManager
         {
             private static List<Tween> _alltweens = null;
+            private static bool clearMe = false;
 
             private static void Initialize()
             {
@@ -25,6 +26,11 @@ namespace JamUtilities
                     t.Update(to.ElapsedGameTime);
                 }
                 CleanUp();
+                if (clearMe)
+                {
+                    _alltweens.Clear();
+                    clearMe = false;
+                }
             }
 
             private static void CleanUp()
@@ -52,7 +58,7 @@ namespace JamUtilities
             public static void Clear()
             {
                 Initialize();
-                _alltweens.Clear();
+                clearMe = true;
             }
         }
     }

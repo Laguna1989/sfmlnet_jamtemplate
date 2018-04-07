@@ -14,7 +14,9 @@ namespace JamTemplate
         #region Fields
 
         public static JamUtilities.GameState _state;
-        
+
+        public static View gameView;
+
         float _timeTilNextInput = 0.0f;
 
         #endregion Fields
@@ -29,6 +31,7 @@ namespace JamTemplate
             //TODO  Default values, replace with correct ones !
             SmartSprite._scaleVector = new Vector2f(2.0f, 2.0f);
             ScreenEffects.Init(new Vector2u(800, 600));
+            gameView = new View(new FloatRect(0, 0, GP.WindowSize.X, GP.WindowSize.Y));
             ParticleManager.SetPositionRect(new FloatRect(-500, 0, 1400, 600));
             //ParticleManager.Gravity = GameProperties.GravitationalAcceleration;
             try
@@ -88,8 +91,6 @@ namespace JamTemplate
                 throw new ArgumentNullException("gs","cannot switch to a gamestate which is null!");
 
             Game._state = gs;
-
-            
             Game._state.Init();
         }
 

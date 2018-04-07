@@ -22,10 +22,10 @@ namespace JamTemplate
 
         static void Main(string[] args)
         {
-            var applicationWindow = new RenderWindow(new VideoMode(GP.WindowSize.X, GP.WindowSize.Y, 32), "$WindowTitle$");
+            var window = new RenderWindow(new VideoMode(GP.WindowSize.X, GP.WindowSize.Y, 32), "$WindowTitle$");
 
-            applicationWindow.Clear();
-            applicationWindow.Display();
+            window.Clear();
+            window.Display();
 
             //////////////////////////////////////////////////////////////////////////////
             // setting up global properties
@@ -48,45 +48,52 @@ namespace JamTemplate
             //
 
 
-            applicationWindow.SetFramerateLimit(60);
-            applicationWindow.SetVerticalSyncEnabled(true);
+            window.SetFramerateLimit(60);
+            window.SetVerticalSyncEnabled(true);
 
-            applicationWindow.Closed += new EventHandler(OnClose);
+            window.Closed += new EventHandler(OnClose);
 
             Game myGame = new Game(new StateIntro());
+            window.SetView(Game.gameView);
 
-            JamUtilities.Mouse.Window = applicationWindow;
+            JamUtilities.Mouse.Window = window;
 
             int startTime = Environment.TickCount;
             int endTime = startTime;
             float time = 16.7f/1000; // 60 fps -> 16.7 ms per frame
 
-            while (applicationWindow.IsOpen())
+            while (window.IsOpen())
             {
+                window.DispatchEvents();
+
                 if (startTime != endTime)
                 {
                     time = (float)(endTime - startTime) / 1000.0f;
                 }
                 startTime = Environment.TickCount;
 
-                applicationWindow.DispatchEvents();
+                
+
+                
+                
 
                 myGame.GetInput();
                 if (myGame.CanBeQuit)
                 {
                     if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
                     {
-                        applicationWindow.Close();
+                        window.Close();
                     }
                 }
 
                 JamUtilities.Mouse.Update();
 
                 myGame.Update(time);
+                window.SetView(Game.gameView);
 
-                myGame.Draw(applicationWindow);
+                myGame.Draw(window);
 
-                applicationWindow.Display();
+                window.Display();
                 endTime = Environment.TickCount;
             }
         }

@@ -11,25 +11,13 @@ namespace JamTemplate
 {
     class StateMenu : GameState
     {
-        //private Animation an;
-        private SmartSprite an;
-        private Shape _overlay;
-        private float _fadeInTime = 1.25f;
 
+        private bool exiting = false;
 
         public override void Init()
         {
             base.Init();
             
-            //an = new Animation("../GFX/Soldier.png", new Vector2u(24, 24));
-            //an.Add("idle", new List<int>(new int[] { 0, 1, 2, 3, 4, 5 }), 0.3f);
-            //an.Play("idle");
-            //an.Position = new Vector2f(200, 10);
-            //Add(an);
-            an = new SmartSprite("../GFX/Soldier.png");
-            an.Sprite.TextureRect = new IntRect(0, 0, 24, 24);
-            an.Position = new Vector2f(200, 10);
-            Add(an);
         }
 
         public override void Draw(RenderWindow rw)
@@ -50,18 +38,18 @@ namespace JamTemplate
         {
             
             base.Update(timeObject);
-            if (Input.justPressed[Keyboard.Key.X])
+        
+            if (Input.justPressed[Keyboard.Key.Return])
             {
-                an.Flash(Color.Red, 0.5f);
-            }
-            if (Input.justReleased[Keyboard.Key.X])
-            {
-                an.Flash(Color.Blue, 0.5f);
-            }
-            if (Input.justPressed[Keyboard.Key.C])
-            {
-                an.Shake(0.5f, 0.02f, 5);
-            }
+                if (!exiting)
+                {
+                    StatePlay state = new StatePlay();
+                    Timer.Start(0.5f, () => Game.SwitchState(state));
+                    JamUtilities.Tweens.ShapeAlphaTween.createAlphaTween(_overlay, 255, 0.5f);
+                    exiting = true;
+                }
+                
+            }    
         }
     }
 }

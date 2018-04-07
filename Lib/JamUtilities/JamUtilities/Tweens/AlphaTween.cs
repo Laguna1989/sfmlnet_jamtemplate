@@ -13,12 +13,13 @@ namespace JamUtilities
             private Shape _shp;
 
 
-            public ShapeAlphaTween(float mt, Shape shp, float end)
+            public ShapeAlphaTween(float mt, Shape shp, float end, Action done = null)
             {
                 maxTime = mt;
                 _shp = shp;
                 valueStart = shp.FillColor.A;
                 valueEnd = end;
+                OnDone = done;
             }
 
             public void DoAlphaTween()
@@ -40,11 +41,10 @@ namespace JamUtilities
             }
 
 
-            public static ShapeAlphaTween createAlphaTween(Shape shp, float end = 0, float time = 1)
+            public static ShapeAlphaTween createAlphaTween(Shape shp, float end = 0, float time = 1, Action done = null)
             {
-                ShapeAlphaTween t = new ShapeAlphaTween(time, shp, end);
-
-
+                ShapeAlphaTween t = new ShapeAlphaTween(time, shp, end, done);
+                
                 TweenManager.Add(t);
                 return t;
             }

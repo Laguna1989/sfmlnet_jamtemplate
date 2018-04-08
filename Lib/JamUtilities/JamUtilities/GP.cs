@@ -8,7 +8,9 @@ namespace JamUtilities
 {
     public class GP
     {
-        public static Vector2u WindowSize { get; set; } = new Vector2u(800,600);
+        public static Vector2u WindowSize { get; private set; } = new Vector2u(800,600);
 
+        public static string WindowGameName { get; private set; } = "$GameTitle$";
+        
     }
 }

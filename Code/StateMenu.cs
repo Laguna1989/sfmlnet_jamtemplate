@@ -24,13 +24,12 @@ namespace JamTemplate
         {
             base.Draw(rw);
 
-            SmartText.DrawText("$GameTitle$", TextAlignment.MID, new Vector2f(400.0f, 150.0f), 1.5f, rw);
+            SmartText.DrawText(GP.WindowGameName, TextAlignment.MID, new Vector2f(400.0f, 150.0f), 1.5f, rw);
 
             SmartText.DrawText("Start [Return]", TextAlignment.MID, new Vector2f(400.0f, 250.0f), rw);
             SmartText.DrawText("W A S D & LShift", TextAlignment.MID, new Vector2f(530.0f, 340.0f), rw);
             SmartText.DrawText("Arrows & RCtrl", TextAlignment.MID, new Vector2f(180.0f, 340.0f), rw);
 
-            SmartText.DrawText("[C]redits", TextAlignment.LEFT, new Vector2f(30.0f, 550.0f), rw);
             ScreenEffects.GetStaticEffect("vignette").Draw(rw);
         }
 
@@ -44,8 +43,7 @@ namespace JamTemplate
                 if (!exiting)
                 {
                     StatePlay state = new StatePlay();
-                    Timer.Start(0.5f, () => Game.SwitchState(state));
-                    JamUtilities.Tweens.ShapeAlphaTween.createAlphaTween(_overlay, 255, 0.5f);
+                    JamUtilities.Tweens.ShapeAlphaTween.createAlphaTween(_overlay, 255, 0.5f, () => Game.SwitchState(state));
                     exiting = true;
                 }
                 

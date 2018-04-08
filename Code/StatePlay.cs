@@ -45,7 +45,7 @@ namespace JamTemplate
                 Game.gameView.Move(new Vector2f(-10 * timeObject.ElapsedGameTime, 0));
             }
 
-            Console.WriteLine(Game.gameView.Center);
+            //Console.WriteLine(Game.gameView.Center);
         }
     }
 }

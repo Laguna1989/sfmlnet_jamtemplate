@@ -12,10 +12,15 @@ namespace JamUtilities
             private static List<Tween> _alltweens = null;
             private static bool clearMe = false;
 
+            internal static List<Action> _onDone = null;
+
             private static void Initialize()
             {
                 if (_alltweens == null)
+                {
                     _alltweens = new List<Tween>();
+                    _onDone = new List<Action>();
+                }
             }
 
             public static void Update(TimeObject to)
@@ -26,6 +31,13 @@ namespace JamUtilities
                     t.Update(to.ElapsedGameTime);
                 }
                 CleanUp();
+                foreach(Action a in _onDone)
+                {
+                    if (a != null)
+                        a();
+                }
+                _onDone.Clear();
+
                 if (clearMe)
                 {
                     _alltweens.Clear();
@@ -42,6 +54,10 @@ namespace JamUtilities
                     if (t.alive)
                     {
                         nt.Add(t);
+                    }
+                    else
+                    {
+                        _onDone.Add(t.OnDone);
                     }
                 }
                 _alltweens = nt;

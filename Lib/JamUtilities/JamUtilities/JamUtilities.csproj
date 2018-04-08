@@ -55,6 +55,7 @@
     <Compile Include="AreatricCloud.cs" />
     <Compile Include="EnumUtil.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="IGameObjectGroup.cs" />
     <Compile Include="Tweens\Tween.cs" />
     <Compile Include="GlowSpriteCreator.cs" />
     <Compile Include="GP.cs" />

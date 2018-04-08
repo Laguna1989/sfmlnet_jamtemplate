@@ -22,7 +22,7 @@ namespace JamTemplate
 
         static void Main(string[] args)
         {
-            var window = new RenderWindow(new VideoMode(GP.WindowSize.X, GP.WindowSize.Y, 32), "$WindowTitle$");
+            var window = new RenderWindow(new VideoMode(GP.WindowSize.X, GP.WindowSize.Y, 32), GP.WindowGameName);
 
             window.Clear();
             window.Display();

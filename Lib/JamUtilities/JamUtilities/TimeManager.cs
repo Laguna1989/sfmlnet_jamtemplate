@@ -9,6 +9,8 @@ namespace JamUtilities
     {
         private static List<Timer> _allTimers = null;
 
+        
+
         private static bool clearMe = false;
 
         private static void Initialize()

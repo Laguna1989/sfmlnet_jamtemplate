@@ -72,10 +72,13 @@ namespace JamUtilities
 
         virtual public void Update(TimeObject to)
         {
-            foreach(IGameObject go in _objects)
+            foreach (IGameObject go in _objects)
             {
                 go.Update(to);
             }
+
+
+
         }
     }
 }

@@ -14,7 +14,7 @@ namespace JamUtilities
             public bool alive = true;
             public float valueStart;
             public float valueEnd;
-            protected Action OnDone = null;
+            internal Action OnDone = null;
 
 
             internal void Update(float elapsed)
@@ -24,7 +24,7 @@ namespace JamUtilities
                 if (age >= maxTime)
                 {
                     alive = false;
-                    Done();
+                    
                 }
                 else
                 {
@@ -37,11 +37,7 @@ namespace JamUtilities
                 // nothing to see here
             }
 
-            private void Done()
-            {
-                if (OnDone != null)
-                    OnDone();
-            }
+            
         }
     }
 }

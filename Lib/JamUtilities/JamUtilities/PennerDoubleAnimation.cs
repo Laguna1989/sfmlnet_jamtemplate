@@ -82,186 +82,202 @@ public class PennerDoubleAnimation
     /// <summary>
     /// Generic Easing equation function
     /// </summary>
-    /// <param name="t">Current time in seconds.</param>
-    /// <param name="b">Starting value.</param>
-    /// <param name="c">Final value.</param>
-    /// <param name="d">Duration of animation.</param>
+    /// <param name="age">Current time in seconds.</param>
+    /// <param name="valueStart">Starting value.</param>
+    /// <param name="valueEnd">Final value.</param>
+    /// <param name="maxTime">Duration of animation.</param>
     /// <returns>The correct value.</returns>
-    public static double GetValue(EquationType type, double t, double b, double c, double d)
+    public static float GetValue(EquationType type, double age, double valueStart, double valueEnd, double maxTime)
     {
         double val = 0.0;
+
+        bool reverse = valueEnd < valueStart;
+        
+        // Swap start and end value
+        if (reverse)
+        {
+            double tmp = valueStart;
+            valueStart = valueEnd;
+            valueEnd = tmp;
+        }
+
         if (type == EquationType.None)
         {
             val = 0.0;
         }
         else if (type == EquationType.Linear)
         {
-            val = Linear(t, b, c, d);
+            val = Linear(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.QuadEaseOut)
         {
-            val = QuadEaseOut(t, b, c, d);
+            val = QuadEaseOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.QuadEaseIn)
         {
-            val = QuadEaseIn(t, b, c, d);
+            val = QuadEaseIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.QuadEaseInOut)
         {
-            val = QuadEaseInOut(t, b, c, d);
+            val = QuadEaseInOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.QuadEaseOutIn)
         {
-            val = QuadEaseOutIn(t, b, c, d);
+            val = QuadEaseOutIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.ExpoEaseOut)
         {
-            val = ExpoEaseOut(t, b, c, d);
+            val = ExpoEaseOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.ExpoEaseIn)
         {
-            val = ExpoEaseIn(t, b, c, d);
+            val = ExpoEaseIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.ExpoEaseInOut)
         {
-            val = ExpoEaseInOut(t, b, c, d);
+            val = ExpoEaseInOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.ExpoEaseOutIn)
         {
-            val = ExpoEaseOutIn(t, b, c, d);
+            val = ExpoEaseOutIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.CubicEaseOut)
         {
-            val = CubicEaseOut(t, b, c, d);
+            val = CubicEaseOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.CubicEaseIn)
         {
-            val = CubicEaseIn(t, b, c, d);
+            val = CubicEaseIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.CubicEaseInOut)
         {
-            val = CubicEaseInOut(t, b, c, d);
+            val = CubicEaseInOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.CubicEaseOutIn)
         {
-            val = CubicEaseOutIn(t, b, c, d);
+            val = CubicEaseOutIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.QuartEaseOut)
         {
-            val = QuartEaseOut(t, b, c, d);
+            val = QuartEaseOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.QuartEaseInOut)
         {
-            val = QuartEaseInOut(t, b, c, d);
+            val = QuartEaseInOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.QuartEaseIn)
         {
-            val = QuartEaseIn(t, b, c, d);
+            val = QuartEaseIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.QuartEaseOutIn)
         {
-            val = QuartEaseOutIn(t, b, c, d);
+            val = QuartEaseOutIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.QuintEaseOut)
         {
-            val = QuintEaseOut(t, b, c, d);
+            val = QuintEaseOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.QuintEaseIn)
         {
-            val = QuintEaseIn(t, b, c, d);
+            val = QuintEaseIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.QuintEaseInOut)
         {
-            val = QuintEaseInOut(t, b, c, d);
+            val = QuintEaseInOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.QuintEaseOutIn)
         {
-            val = QuintEaseOutIn(t, b, c, d);
+            val = QuintEaseOutIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.CircEaseOut)
         {
-            val = CircEaseOut(t, b, c, d);
+            val = CircEaseOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.CircEaseIn)
         {
-            val = CircEaseIn(t, b, c, d);
+            val = CircEaseIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.CircEaseInOut)
         {
-            val = CircEaseInOut(t, b, c, d);
+            val = CircEaseInOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.CircEaseOutIn)
         {
-            val = CircEaseOutIn(t, b, c, d);
+            val = CircEaseOutIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.SineEaseOut)
         {
-            val = SineEaseOut(t, b, c, d);
+            val = SineEaseOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.SineEaseIn)
         {
-            val = SineEaseIn(t, b, c, d);
+            val = SineEaseIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.SineEaseInOut)
         {
-            val = SineEaseInOut(t, b, c, d);
+            val = SineEaseInOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.SineEaseOutIn)
         {
-            val = SineEaseOutIn(t, b, c, d);
+            val = SineEaseOutIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.ElasticEaseOut)
         {
-            val = ElasticEaseOut(t, b, c, d);
+            val = ElasticEaseOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.ElasticEaseIn)
         {
-            val = ElasticEaseIn(t, b, c, d);
+            val = ElasticEaseIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.ElasticEaseInOut)
         {
-            val = ElasticEaseInOut(t, b, c, d);
+            val = ElasticEaseInOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.ElasticEaseOutIn)
         {
-            val = ElasticEaseOutIn(t, b, c, d);
+            val = ElasticEaseOutIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.BounceEaseOut)
         {
-            val = BounceEaseOut(t, b, c, d);
+            val = BounceEaseOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.BounceEaseIn)
         {
-            val = BounceEaseIn(t, b, c, d);
+            val = BounceEaseIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.BounceEaseInOut)
         {
-            val = BounceEaseInOut(t, b, c, d);
+            val = BounceEaseInOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.BounceEaseOutIn)
         {
-            val = BounceEaseOutIn(t, b, c, d);
+            val = BounceEaseOutIn(age, valueStart, valueEnd, maxTime);
         }
 
 
         else if (type == EquationType.BackEaseOut)
         {
-            val = BackEaseOut(t, b, c, d);
+            val = BackEaseOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.BackEaseIn)
         {
-            val = BackEaseIn(t, b, c, d);
+            val = BackEaseIn(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.BackEaseInOut)
         {
-            val = BackEaseInOut(t, b, c, d);
+            val = BackEaseInOut(age, valueStart, valueEnd, maxTime);
         }
         else if (type == EquationType.BackEaseOutIn)
         {
-            val = BackEaseOutIn(t, b, c, d);
+            val = BackEaseOutIn(age, valueStart, valueEnd, maxTime);
         }
 
-        return val;
+        if (reverse)
+        {
+            val = valueEnd - val;
+        }
+
+        return (float)val;
         
     }
 
@@ -274,14 +290,14 @@ public class PennerDoubleAnimation
     /// <summary>
     /// Easing equation function for a simple linear tweening, with no easing.
     /// </summary>
-    /// <param name="t">Current time in seconds.</param>
-    /// <param name="b">Starting value.</param>
-    /// <param name="c">Final value.</param>
-    /// <param name="d">Duration of animation.</param>
+    /// <param name="age">Current time in seconds.</param>
+    /// <param name="valueStart">Starting value.</param>
+    /// <param name="valueEnd">Final value.</param>
+    /// <param name="maxTime">Duration of animation.</param>
     /// <returns>The correct value.</returns>
-    public static double Linear( double t, double b, double c, double d )
+    public static double Linear( double age, double valueStart, double valueEnd, double maxTime )
     {
-        return c * t / d + b;
+        return valueStart + (valueEnd - valueStart) * age/maxTime;
     }
 
     #endregion
@@ -289,7 +305,7 @@ public class PennerDoubleAnimation
     #region Expo
 
     /// <summary>
-    /// Easing equation function for an exponential (2^t) easing out: 
+    /// Easing equation function for an exponential (2^age) easing out: 
     /// decelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -303,7 +319,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for an exponential (2^t) easing in: 
+    /// Easing equation function for an exponential (2^age) easing in: 
     /// accelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -317,7 +333,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for an exponential (2^t) easing in/out: 
+    /// Easing equation function for an exponential (2^age) easing in/out: 
     /// acceleration until halfway, then deceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -340,7 +356,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for an exponential (2^t) easing out/in: 
+    /// Easing equation function for an exponential (2^age) easing out/in: 
     /// deceleration until halfway, then acceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -361,7 +377,7 @@ public class PennerDoubleAnimation
     #region Circular
 
     /// <summary>
-    /// Easing equation function for a circular (sqrt(1-t^2)) easing out: 
+    /// Easing equation function for a circular (sqrt(1-age^2)) easing out: 
     /// decelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -375,7 +391,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a circular (sqrt(1-t^2)) easing in: 
+    /// Easing equation function for a circular (sqrt(1-age^2)) easing in: 
     /// accelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -389,7 +405,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a circular (sqrt(1-t^2)) easing in/out: 
+    /// Easing equation function for a circular (sqrt(1-age^2)) easing in/out: 
     /// acceleration until halfway, then deceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -406,7 +422,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a circular (sqrt(1-t^2)) easing in/out: 
+    /// Easing equation function for a circular (sqrt(1-age^2)) easing in/out: 
     /// acceleration until halfway, then deceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -427,7 +443,7 @@ public class PennerDoubleAnimation
     #region Quad
 
     /// <summary>
-    /// Easing equation function for a quadratic (t^2) easing out: 
+    /// Easing equation function for a quadratic (age^2) easing out: 
     /// decelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -441,7 +457,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a quadratic (t^2) easing in: 
+    /// Easing equation function for a quadratic (age^2) easing in: 
     /// accelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -455,7 +471,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a quadratic (t^2) easing in/out: 
+    /// Easing equation function for a quadratic (age^2) easing in/out: 
     /// acceleration until halfway, then deceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -472,7 +488,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a quadratic (t^2) easing out/in: 
+    /// Easing equation function for a quadratic (age^2) easing out/in: 
     /// deceleration until halfway, then acceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -493,7 +509,7 @@ public class PennerDoubleAnimation
     #region Sine
 
     /// <summary>
-    /// Easing equation function for a sinusoidal (sin(t)) easing out: 
+    /// Easing equation function for a sinusoidal (sin(age)) easing out: 
     /// decelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -507,7 +523,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a sinusoidal (sin(t)) easing in: 
+    /// Easing equation function for a sinusoidal (sin(age)) easing in: 
     /// accelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -521,7 +537,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a sinusoidal (sin(t)) easing in/out: 
+    /// Easing equation function for a sinusoidal (sin(age)) easing in/out: 
     /// acceleration until halfway, then deceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -538,7 +554,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a sinusoidal (sin(t)) easing in/out: 
+    /// Easing equation function for a sinusoidal (sin(age)) easing in/out: 
     /// deceleration until halfway, then acceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -559,7 +575,7 @@ public class PennerDoubleAnimation
     #region Cubic
 
     /// <summary>
-    /// Easing equation function for a cubic (t^3) easing out: 
+    /// Easing equation function for a cubic (age^3) easing out: 
     /// decelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -573,7 +589,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a cubic (t^3) easing in: 
+    /// Easing equation function for a cubic (age^3) easing in: 
     /// accelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -587,7 +603,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a cubic (t^3) easing in/out: 
+    /// Easing equation function for a cubic (age^3) easing in/out: 
     /// acceleration until halfway, then deceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -604,7 +620,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a cubic (t^3) easing out/in: 
+    /// Easing equation function for a cubic (age^3) easing out/in: 
     /// deceleration until halfway, then acceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -625,7 +641,7 @@ public class PennerDoubleAnimation
     #region Quartic
 
     /// <summary>
-    /// Easing equation function for a quartic (t^4) easing out: 
+    /// Easing equation function for a quartic (age^4) easing out: 
     /// decelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -639,7 +655,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a quartic (t^4) easing in: 
+    /// Easing equation function for a quartic (age^4) easing in: 
     /// accelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -653,7 +669,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a quartic (t^4) easing in/out: 
+    /// Easing equation function for a quartic (age^4) easing in/out: 
     /// acceleration until halfway, then deceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -670,7 +686,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a quartic (t^4) easing out/in: 
+    /// Easing equation function for a quartic (age^4) easing out/in: 
     /// deceleration until halfway, then acceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -691,7 +707,7 @@ public class PennerDoubleAnimation
     #region Quintic
 
     /// <summary>
-    /// Easing equation function for a quintic (t^5) easing out: 
+    /// Easing equation function for a quintic (age^5) easing out: 
     /// decelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -705,7 +721,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a quintic (t^5) easing in: 
+    /// Easing equation function for a quintic (age^5) easing in: 
     /// accelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -719,7 +735,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a quintic (t^5) easing in/out: 
+    /// Easing equation function for a quintic (age^5) easing in/out: 
     /// acceleration until halfway, then deceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -735,7 +751,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a quintic (t^5) easing in/out: 
+    /// Easing equation function for a quintic (age^5) easing in/out: 
     /// acceleration until halfway, then deceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -909,7 +925,7 @@ public class PennerDoubleAnimation
     #region Back
 
     /// <summary>
-    /// Easing equation function for a back (overshooting cubic easing: (s+1)*t^3 - s*t^2) easing out: 
+    /// Easing equation function for a back (overshooting cubic easing: (s+1)*age^3 - s*age^2) easing out: 
     /// decelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -923,7 +939,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a back (overshooting cubic easing: (s+1)*t^3 - s*t^2) easing in: 
+    /// Easing equation function for a back (overshooting cubic easing: (s+1)*age^3 - s*age^2) easing in: 
     /// accelerating from zero velocity.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -937,7 +953,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a back (overshooting cubic easing: (s+1)*t^3 - s*t^2) easing in/out: 
+    /// Easing equation function for a back (overshooting cubic easing: (s+1)*age^3 - s*age^2) easing in/out: 
     /// acceleration until halfway, then deceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>
@@ -954,7 +970,7 @@ public class PennerDoubleAnimation
     }
 
     /// <summary>
-    /// Easing equation function for a back (overshooting cubic easing: (s+1)*t^3 - s*t^2) easing out/in: 
+    /// Easing equation function for a back (overshooting cubic easing: (s+1)*age^3 - s*age^2) easing out/in: 
     /// deceleration until halfway, then acceleration.
     /// </summary>
     /// <param name="t">Current time in seconds.</param>

@@ -15,6 +15,7 @@ namespace JamUtilities
             public float valueStart;
             public float valueEnd;
             internal Action OnDone = null;
+            public PennerDoubleAnimation.EquationType ease;
 
 
             internal void Update(float elapsed)

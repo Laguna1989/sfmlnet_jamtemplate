@@ -12,21 +12,23 @@ namespace JamUtilities
         {
             private Shape _shp;
 
-
-            public ShapeAlphaTween(float mt, Shape shp, float end, Action done = null)
+            private ShapeAlphaTween(float mt, Shape shp, float end, Action done = null, PennerDoubleAnimation.EquationType e = PennerDoubleAnimation.EquationType.Linear)
             {
                 maxTime = mt;
                 _shp = shp;
                 valueStart = shp.FillColor.A;
                 valueEnd = end;
                 OnDone = done;
+                ease = e;
             }
 
             public void DoAlphaTween()
             {
-                float t = age / maxTime;
-                float dy = valueEnd - valueStart;
-                float val = valueStart + dy * t;
+                //float t = age / maxTime;
+                //float dy = valueEnd - valueStart;
+                //float val = valueStart + dy * t;
+
+                float val = PennerDoubleAnimation.GetValue(ease, age, valueStart, valueEnd, maxTime);
                 //Console.WriteLine("do alpha tween" + val.ToString());
                 Color newCol = new Color(_shp.FillColor);
                 newCol.A = (byte)(val);
@@ -40,10 +42,9 @@ namespace JamUtilities
             }
 
 
-            public static ShapeAlphaTween createAlphaTween(Shape shp, float end = 0, float time = 1, Action done = null)
+            public static ShapeAlphaTween createAlphaTween(Shape shp, float end = 0, float time = 1, Action done = null, PennerDoubleAnimation.EquationType e = PennerDoubleAnimation.EquationType.ExpoEaseIn)
             {
-                ShapeAlphaTween t = new ShapeAlphaTween(time, shp, end, done);
-                
+                ShapeAlphaTween t = new ShapeAlphaTween(time, shp, end, done,e);
                 TweenManager.Add(t);
                 return t;
             }

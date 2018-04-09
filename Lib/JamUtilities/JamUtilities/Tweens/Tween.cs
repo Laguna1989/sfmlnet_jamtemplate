@@ -37,8 +37,6 @@ namespace JamUtilities
             {
                 // nothing to see here
             }
-
-            
         }
     }
 }

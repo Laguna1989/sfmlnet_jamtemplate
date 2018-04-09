@@ -42,7 +42,7 @@ namespace JamUtilities
             }
 
 
-            public static ShapeAlphaTween createAlphaTween(Shape shp, float end = 0, float time = 1, Action done = null, PennerDoubleAnimation.EquationType e = PennerDoubleAnimation.EquationType.ExpoEaseIn)
+            public static ShapeAlphaTween createAlphaTween(Shape shp, float end = 0, float time = 1, Action done = null, PennerDoubleAnimation.EquationType e = PennerDoubleAnimation.EquationType.Linear)
             {
                 ShapeAlphaTween t = new ShapeAlphaTween(time, shp, end, done,e);
                 TweenManager.Add(t);

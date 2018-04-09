@@ -23,8 +23,9 @@ namespace JamTemplate
         private float _introTime = 2.75f;    // 1 second fade in, 0.5 second stay, 1 second fade out
         
         public GameState nextState = new StateMenu();
-        
-        
+        private bool ending = false;
+
+
         #endregion Fields
 
         public StateIntro(GameState next = null )
@@ -48,9 +49,19 @@ namespace JamTemplate
                 throw;
             }
 
-            Timer.Start(1.25f, () => ShapeAlphaTween.createAlphaTween(_overlay, 255, 1));
-            Timer.Start(_introTime, () => Game.SwitchState(nextState));
+            Timer.Start(_introTime - 1.5f, () => ShapeAlphaTween.createAlphaTween(_overlay, 255, 1));
+            Timer.Start(_introTime, () => End() );
         
+        }
+
+
+        private void End()
+        {
+            if (!ending)
+            {
+                ending = true;
+                Game.SwitchState(nextState);
+            }
         }
 
         public override void Draw(RenderWindow rw)
@@ -73,6 +84,13 @@ namespace JamTemplate
 
             _age += to.ElapsedGameTime;
             
+            if (Input.justPressed[Keyboard.Key.Escape] ||
+                Input.justPressed[Keyboard.Key.Return] ||
+                Input.justPressed[Keyboard.Key.Space])
+            {
+                End();
+            }
+
             if (_age >= 1)
             {
                 float v = _age - 1;

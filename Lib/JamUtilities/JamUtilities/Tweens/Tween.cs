@@ -21,16 +21,27 @@ namespace JamUtilities
             internal void Update(float elapsed)
             {
                 age += elapsed;
-
-                if (age >= maxTime)
+                if (valueStart == valueEnd)
                 {
-                    alive = false;
+                    finish();
+                    return;
+                }
                     
+
+                if (age > maxTime)
+                {
+                    finish();
                 }
                 else
                 {
                     DoPerform();
                 }
+            }
+
+            // set the final value (prevent overshoots)
+            protected virtual void finish()
+            {
+                alive = false;
             }
 
             public virtual void DoPerform()

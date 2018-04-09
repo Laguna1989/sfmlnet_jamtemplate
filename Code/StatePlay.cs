@@ -10,6 +10,8 @@ namespace JamTemplate
 {
     class StatePlay : JamUtilities.GameState
     {
+
+        public Shape shp;
         public override void Init()
         {
             base.Init();
@@ -23,27 +25,43 @@ namespace JamTemplate
                 an.Position = RandomGenerator.GetRandomVector2fInRect(new FloatRect(0,0,GP.WindowSize.X, GP.WindowSize.Y));
                 Add(an);
             }
+
+            shp = new RectangleShape(new Vector2f(50, 50));
+            shp.Position = new Vector2f(100, 100);
         }
 
         public override void Draw(RenderWindow rw)
         {
             base.Draw(rw);
 
-
+            rw.Draw(shp);
         }
 
         public override void Update(TimeObject timeObject)
         {
             base.Update(timeObject);
 
+            //Console.WriteLine("gs: " + shp.Scale.X.ToString());
+
             if (Input.pressed[Keyboard.Key.D])
             {
-                Game.gameView.Move(new Vector2f(10 * timeObject.ElapsedGameTime, 0));
+                Game.gameView.Move(new Vector2f(20 * timeObject.ElapsedGameTime, 0));
             }
             else if (Input.pressed[Keyboard.Key.A])
             {
-                Game.gameView.Move(new Vector2f(-10 * timeObject.ElapsedGameTime, 0));
+                Game.gameView.Move(new Vector2f(-20 * timeObject.ElapsedGameTime, 0));
             }
+
+            if (Input.justPressed[Keyboard.Key.K])
+            {
+                JamUtilities.Tweens.ShapeScaleTween.createShapeTween(shp, 2, 2);
+            }
+
+            if (Input.justPressed[Keyboard.Key.L])
+            {
+                JamUtilities.Tweens.ShapeScaleTween.createShapeTween(shp, 0.5f, 2);
+            }
+
 
             //Console.WriteLine(Game.gameView.Center);
         }

@@ -22,11 +22,19 @@ namespace JamUtilities
                 ease = e;
             }
 
+            protected override void finish()
+            {
+                base.finish();
+                Color newCol = new Color(_shp.FillColor);
+                newCol.A = (byte)(valueEnd);
+                _shp.FillColor = newCol;
+                Console.WriteLine("tween finish at: " + valueEnd);
+            }
+
             public void DoAlphaTween()
             {
-                //float t = age / maxTime;
-                //float dy = valueEnd - valueStart;
-                //float val = valueStart + dy * t;
+                if (!alive)
+                    return;
 
                 float val = PennerDoubleAnimation.GetValue(ease, age, valueStart, valueEnd, maxTime);
                 //Console.WriteLine("do alpha tween" + val.ToString());

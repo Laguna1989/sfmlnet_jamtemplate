@@ -91,15 +91,29 @@ public class PennerDoubleAnimation
     {
         double val = 0.0;
 
-        bool reverse = valueEnd < valueStart;
+       
+
+        Console.WriteLine("");
         
+
+        
+
+        bool reverse = valueEnd < valueStart;
+
+        Console.WriteLine("s= " + valueStart + " e= " + valueEnd + " rev= " + reverse.ToString());
+
+        
+
         // Swap start and end value
         if (reverse)
         {
             double tmp = valueStart;
             valueStart = valueEnd;
             valueEnd = tmp;
+
         }
+
+        valueEnd -= valueStart;
 
         if (type == EquationType.None)
         {
@@ -272,11 +286,16 @@ public class PennerDoubleAnimation
             val = BackEaseOutIn(age, valueStart, valueEnd, maxTime);
         }
 
+        valueEnd += valueStart;
+        Console.WriteLine("pd1:" + val);
+        Console.WriteLine("ve :" + valueEnd + " vs : " + valueStart);
         if (reverse)
         {
-            val = valueEnd - val;
+            val = valueStart - val + valueEnd;
         }
 
+        Console.WriteLine("pd2:" + val);
+        
         return (float)val;
         
     }
@@ -297,7 +316,8 @@ public class PennerDoubleAnimation
     /// <returns>The correct value.</returns>
     public static double Linear( double age, double valueStart, double valueEnd, double maxTime )
     {
-        return valueStart + (valueEnd - valueStart) * age/maxTime;
+        //return valueStart + (valueEnd - valueStart) * age/maxTime;
+        return valueEnd * age / maxTime + valueStart;
     }
 
     #endregion

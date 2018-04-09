@@ -54,16 +54,14 @@ namespace JamTemplate
 
             if (Input.justPressed[Keyboard.Key.K])
             {
-                JamUtilities.Tweens.ShapeScaleTween.createShapeTween(shp, 2, 2);
+                JamUtilities.Tweens.ShapeScaleTween.createShapeTween(shp, 2, 2,null, PennerDoubleAnimation.EquationType.CubicEaseIn);
             }
 
             if (Input.justPressed[Keyboard.Key.L])
             {
-                JamUtilities.Tweens.ShapeScaleTween.createShapeTween(shp, 0.5f, 2);
+                JamUtilities.Tweens.ShapeScaleTween.createShapeTween(shp, 0.5f, 2, null, PennerDoubleAnimation.EquationType.SineEaseOut);
             }
-
-
-            //Console.WriteLine(Game.gameView.Center);
+            
         }
     }
 }

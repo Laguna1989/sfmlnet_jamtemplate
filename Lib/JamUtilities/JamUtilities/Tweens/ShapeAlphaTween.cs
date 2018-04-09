@@ -28,7 +28,6 @@ namespace JamUtilities
                 Color newCol = new Color(_shp.FillColor);
                 newCol.A = (byte)(valueEnd);
                 _shp.FillColor = newCol;
-                Console.WriteLine("tween finish at: " + valueEnd);
             }
 
             public void DoAlphaTween()

@@ -90,21 +90,9 @@ public class PennerDoubleAnimation
     public static float GetValue(EquationType type, double age, double valueStart, double valueEnd, double maxTime)
     {
         double val = 0.0;
-
-       
-
-        Console.WriteLine("");
-        
-
-        
-
         bool reverse = valueEnd < valueStart;
-
-        Console.WriteLine("s= " + valueStart + " e= " + valueEnd + " rev= " + reverse.ToString());
-
-        
-
-        // Swap start and end value
+       
+        // Swap start and end value if reversed
         if (reverse)
         {
             double tmp = valueStart;
@@ -113,6 +101,7 @@ public class PennerDoubleAnimation
 
         }
 
+        // penner equations work with start and offset instead of start and end, so subtract (and add again later)
         valueEnd -= valueStart;
 
         if (type == EquationType.None)
@@ -286,18 +275,15 @@ public class PennerDoubleAnimation
             val = BackEaseOutIn(age, valueStart, valueEnd, maxTime);
         }
 
+        // penner equations work with start and offset instead of start and end, so add (to compensate for eariler subtraction)
         valueEnd += valueStart;
-        Console.WriteLine("pd1:" + val);
-        Console.WriteLine("ve :" + valueEnd + " vs : " + valueStart);
+        
         if (reverse)
         {
+            // fix result for reversed tween
             val = valueStart - val + valueEnd;
         }
-
-        Console.WriteLine("pd2:" + val);
-        
         return (float)val;
-        
     }
 
     #region Equations

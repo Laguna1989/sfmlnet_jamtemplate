@@ -14,9 +14,7 @@ namespace JamTemplate
         #region Fields
 
         public static JamUtilities.GameState _state;
-
-        public static View gameView;
-
+        
         float _timeTilNextInput = 0.0f;
 
         private static Shape _background;
@@ -29,14 +27,17 @@ namespace JamTemplate
         public Game(GameState s)
         {
 
-            //_state = s;
+        
             SwitchState(s);
-            //TODO  Default values, replace with correct ones !
+            
             SmartSprite._scaleVector = new Vector2f(2.0f, 2.0f);
             ScreenEffects.Init(new Vector2u(800, 600));
-            gameView = new View(new FloatRect(0, 0, GP.WindowSize.X, GP.WindowSize.Y));
+            GP.WindowGameView = new View(new FloatRect(0, 0, GP.WindowSize.X, GP.WindowSize.Y));
             ParticleManager.SetPositionRect(new FloatRect(-500, 0, 1400, 600));
             //ParticleManager.Gravity = GameProperties.GravitationalAcceleration;
+
+
+
             _background = new RectangleShape(new Vector2f(GP.WindowSize.X, GP.WindowSize.Y));
             _background.FillColor = Color.Black;
 

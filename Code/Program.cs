@@ -22,17 +22,10 @@ namespace JamTemplate
 
         static void Main(string[] args)
         {
-            var window = new RenderWindow(new VideoMode(GP.WindowSize.X, GP.WindowSize.Y, 32), GP.WindowGameName);
+            GP.Window = new RenderWindow(new VideoMode(800, 600, 32), GP.WindowGameName);
+            GP.Window.Display();
 
-            window.Clear();
-            window.Display();
-
-            //////////////////////////////////////////////////////////////////////////////
-            // setting up global properties
-            SmartSprite._scaleVector = new Vector2f(2.0f, 2.0f);
-            ScreenEffects.Init(new Vector2u(800, 600));
-            ParticleManager.SetPositionRect(new FloatRect(-500, 0, 1400, 600));
-            //ParticleManager.Gravity = GameProperties.GravitationalAcceleration;
+            
             try
             {
                 SmartText._font = new Font("../GFX/font.ttf");
@@ -48,23 +41,23 @@ namespace JamTemplate
             //
 
 
-            window.SetFramerateLimit(60);
-            window.SetVerticalSyncEnabled(true);
+            GP.Window.SetFramerateLimit(60);
+            GP.Window.SetVerticalSyncEnabled(true);
 
-            window.Closed += new EventHandler(OnClose);
+            GP.Window.Closed += new EventHandler(OnClose);
 
             Game myGame = new Game(new StateIntro());
-            window.SetView(Game.gameView);
+            GP.Window.SetView(GP.WindowGameView);
 
-            JamUtilities.Mouse.Window = window;
+            JamUtilities.Mouse.Window = GP.Window;
 
             int startTime = Environment.TickCount;
             int endTime = startTime;
             float time = 16.7f/1000; // 60 fps -> 16.7 ms per frame
 
-            while (window.IsOpen())
+            while (GP.Window.IsOpen())
             {
-                window.DispatchEvents();
+                GP.Window.DispatchEvents();
 
                 if (startTime != endTime)
                 {
@@ -82,7 +75,7 @@ namespace JamTemplate
                 {
                     if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
                     {
-                        window.Close();
+                        GP.Window.Close();
                     }
                 }
 
@@ -90,11 +83,11 @@ namespace JamTemplate
                 JamUtilities.Mouse.Update();
 
                 myGame.Update(time);
-                window.SetView(Game.gameView);
+                GP.Window.SetView(GP.WindowGameView);
 
-                myGame.Draw(window);
+                myGame.Draw(GP.Window);
 
-                window.Display();
+                GP.Window.Display();
                 endTime = Environment.TickCount;
             }
         }

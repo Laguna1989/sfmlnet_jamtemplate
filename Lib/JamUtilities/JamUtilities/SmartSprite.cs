@@ -278,6 +278,15 @@ namespace JamUtilities
             return;
         }
 
+        public Vector2f GetPosition()
+        {
+            return Position;
+        }
+        public void SetPosition(Vector2f newPos)
+        {
+            Position = newPos;
+        }
+
 
         #region FIELDS
 

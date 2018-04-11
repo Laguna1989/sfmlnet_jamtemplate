@@ -45,11 +45,11 @@ namespace JamTemplate
 
             if (Input.pressed[Keyboard.Key.D])
             {
-                Game.gameView.Move(new Vector2f(20 * timeObject.ElapsedGameTime, 0));
+                GP.WindowGameView.Move(new Vector2f(100 * timeObject.ElapsedGameTime, 0));
             }
             else if (Input.pressed[Keyboard.Key.A])
             {
-                Game.gameView.Move(new Vector2f(-20 * timeObject.ElapsedGameTime, 0));
+                GP.WindowGameView.Move(new Vector2f(-100 * timeObject.ElapsedGameTime, 0));
             }
 
             if (Input.justPressed[Keyboard.Key.K])
@@ -59,7 +59,7 @@ namespace JamTemplate
 
             if (Input.justPressed[Keyboard.Key.L])
             {
-                JamUtilities.Tweens.ShapeScaleTween.createShapeTween(shp, 0.5f, 2, null, PennerDoubleAnimation.EquationType.SineEaseOut);
+                JamUtilities.Tweens.ShapeScaleTween.createShapeTween(shp, -0.5f, 2, null, PennerDoubleAnimation.EquationType.SineEaseOut);
             }
             
         }

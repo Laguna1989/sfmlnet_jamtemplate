@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SFML.Graphics;
+using SFML.Window;
 
 namespace JamUtilities
 {
@@ -12,5 +13,7 @@ namespace JamUtilities
         void GetInput();
         void Update(TimeObject timeObject);
         void Draw(RenderWindow rw);
+        Vector2f GetPosition();
+        void SetPosition(Vector2f newPos);
     }
 }

@@ -186,5 +186,14 @@ namespace JamUtilities
             { _s.Shake(duration,shakeTime,power, shakeDirection); }
         }
 
+        public Vector2f GetPosition()
+        {
+            return Position;
+        }
+
+        public void SetPosition(Vector2f newPos)
+        {
+            Position = newPos;
+        }
     }
 }

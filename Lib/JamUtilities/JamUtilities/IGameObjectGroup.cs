@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SFML.Graphics;
+using SFML.Window;
 
 namespace JamUtilities
 {
@@ -43,6 +44,18 @@ namespace JamUtilities
             {
                 go.Update(to);
             }
+        }
+
+        public Vector2f GetPosition()
+        {
+            return new Vector2f(0,0);
+        }
+
+        public void SetPosition(Vector2f newPos)
+        {
+#if DEBUG
+            Console.WriteLine("cannot set position on GameObjectGroup!");
+#endif
         }
     }
 }

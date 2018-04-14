@@ -24,13 +24,11 @@ namespace JamTemplate
         {
             base.Draw(rw);
 
-            SmartText.DrawText(GP.WindowGameName, TextAlignment.MID, new Vector2f(400.0f, 150.0f), 1.5f, rw);
+            SmartText.DrawText(GP.WindowGameName, TextAlignment.MID, new Vector2f(400.0f, 150.0f), new Vector2f(1.5f, 1.5f), Palette.color1, rw);
 
-            SmartText.DrawText("Start [Return]", TextAlignment.MID, new Vector2f(400.0f, 250.0f), rw);
-            SmartText.DrawText("W A S D & LShift", TextAlignment.MID, new Vector2f(530.0f, 340.0f), rw);
-            SmartText.DrawText("Arrows & RCtrl", TextAlignment.MID, new Vector2f(180.0f, 340.0f), rw);
-
-            ScreenEffects.GetStaticEffect("vignette").Draw(rw);
+            SmartText.DrawText("Start [Return]", TextAlignment.MID, new Vector2f(400.0f, 250.0f),Palette.color2, rw);
+            SmartText.DrawText("W A S D & LShift", TextAlignment.MID, new Vector2f(530.0f, 340.0f), Palette.color2, rw);
+            SmartText.DrawText("Arrows & RCtrl", TextAlignment.MID, new Vector2f(180.0f, 340.0f), Palette.color2, rw);
         }
 
         public override void Update(TimeObject timeObject)

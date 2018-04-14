@@ -49,6 +49,8 @@ namespace JamUtilities.ScreenEffects
 
         protected override void DoDraw(SFML.Graphics.RenderWindow rw)
         {
+            _fadeRadialSprite.Position = new Vector2f(GP.WindowGameView.Center.X - GP.WindowSize.X / 2, GP.WindowGameView.Center.Y - GP.WindowSize.Y / 2);
+
             rw.Draw(_fadeRadialSprite);
         }
 

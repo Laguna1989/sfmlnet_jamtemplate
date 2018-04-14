@@ -29,7 +29,10 @@ namespace JamTemplate
 
         
             SwitchState(s);
-            
+
+            JamUtilities.Palette.LoadPalette("../GFX/gustav.scss");
+
+
             SmartSprite._scaleVector = new Vector2f(2.0f, 2.0f);
             ScreenEffects.Init(new Vector2u(800, 600));
             GP.WindowGameView = new View(new FloatRect(0, 0, GP.WindowSize.X, GP.WindowSize.Y));
@@ -39,7 +42,7 @@ namespace JamTemplate
 
 
             _background = new RectangleShape(new Vector2f(GP.WindowSize.X, GP.WindowSize.Y));
-            _background.FillColor = Color.Black;
+            _background.FillColor = Palette.color4;
 
             try
             {
@@ -69,6 +72,8 @@ namespace JamTemplate
                 _timeTilNextInput -= deltaT;
             }
 
+            _background.Position =new Vector2f(GP.WindowGameView.Center.X - GP.WindowSize.X/2, GP.WindowGameView.Center.Y  - GP.WindowSize.Y/2);
+
             TimeObject to = Timing.Update(deltaT);
             Input.Update();
             TweenManager.Update(to);
@@ -85,7 +90,9 @@ namespace JamTemplate
             rw.Draw(_background);
             _state.Draw(rw);
 
+
             _state.DrawOverlay(rw);
+            ScreenEffects.GetStaticEffect("vignette").Draw(rw);
         }
 
 

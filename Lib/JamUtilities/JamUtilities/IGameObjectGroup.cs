@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using SFML.Graphics;
 using SFML.Window;
+using System.Collections;
 
 namespace JamUtilities
 {
-    class IGameObjectGroup : IGameObject
+    public class IGameObjectGroup : IGameObject
     {
         public List<IGameObject> members { get; private set; }
 
@@ -56,6 +57,20 @@ namespace JamUtilities
 #if DEBUG
             Console.WriteLine("cannot set position on GameObjectGroup!");
 #endif
+        }
+
+        public void Add (IGameObject go)
+        {
+            if (go != null)
+            {
+                members.Add(go);
+            }
+        }
+
+        // The IEnumerable interface requires implementation of method GetEnumerator.
+        public IEnumerator GetEnumerator()
+        {
+            return members.GetEnumerator();
         }
     }
 }

@@ -19,6 +19,18 @@ namespace SFMLCollision
 			Points[2] = trans.TransformPoint(local.Width, local.Height);
 			Points[3] = trans.TransformPoint(0.0f, local.Height);
 		}
+        public OrientedBoundingBox(SFML.Graphics.Shape Object) // Calculate the four points of the OBB from a transformed (scaled, rotated...) sprite
+        {
+            Points = new SFML.Window.Vector2f[4];
+            SFML.Graphics.Transform trans = Object.Transform;
+            
+                
+
+            Points[0] = trans.TransformPoint(0.0f, 0.0f);
+            Points[1] = trans.TransformPoint(Object.GetLocalBounds().Width, 0.0f);
+            Points[2] = trans.TransformPoint(Object.GetLocalBounds().Width, Object.GetLocalBounds().Height);
+            Points[3] = trans.TransformPoint(0.0f, Object.GetLocalBounds().Height);
+        }
 
         public void ProjectOntoAxis (SFML.Window.Vector2f Axis, ref float Min, ref float Max) // Project all four points of the OBB onto the given axis and return the dotproducts of the two outermost points
 		{

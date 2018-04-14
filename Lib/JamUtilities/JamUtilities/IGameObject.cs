@@ -11,7 +11,7 @@ namespace JamUtilities
     {
         bool IsDead();
         void GetInput();
-        void Update(TimeObject timeObject);
+        void Update(TimeObject to);
         void Draw(RenderWindow rw);
         Vector2f GetPosition();
         void SetPosition(Vector2f newPos);

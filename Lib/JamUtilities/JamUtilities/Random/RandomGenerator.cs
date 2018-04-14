@@ -52,6 +52,14 @@ namespace JamUtilities
             return (T)values.GetValue(_random.Next(values.Length));
         }
 
+        public static int Int(int min = 0, int max = 100)
+        {
+            return Random.Next(min, max);
+        }
+        public static int Int(int max = 100)
+        {
+            return Random.Next(max);
+        }
 
         static public Vector2f GetRandomVector2fInCircle(float radius)
         {

@@ -25,9 +25,6 @@ namespace JamUtilities
             protected override void finish()
             {
                 base.finish();
-                //Color newCol = new Color(_spr.Sprite.Color);
-                //newCol.A = (byte)(valueEnd);
-                //_spr.Sprite.Color = newCol;
                 _spr.Alpha = (byte)valueEnd;
             }
 
@@ -37,10 +34,6 @@ namespace JamUtilities
                     return;
 
                 float val = PennerDoubleAnimation.GetValue(ease, age, valueStart, valueEnd, maxTime);
-                //Console.WriteLine("do alpha tween" + val.ToString());
-                //Color newCol = new Color(_spr.Sprite.Color);
-                //newCol.A = (byte)(val);
-                //_spr.Sprite.Color = newCol;
                 _spr.Alpha = (byte)val;
             }
 

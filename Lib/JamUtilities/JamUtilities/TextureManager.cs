@@ -6,11 +6,11 @@ using SFML.Graphics;
 
 namespace JamUtilities
 {
-    class TextureManager
+    public class TextureManager
     {
         private static Dictionary<string, Texture> _textureDictionary;
 
-        internal static SFML.Graphics.Texture GetTextureFromFileName(string filepath)
+        public static SFML.Graphics.Texture GetTextureFromFileName(string filepath)
         {
             Texture ret = null;
 

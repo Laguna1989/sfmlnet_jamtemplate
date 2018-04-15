@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SFML.Window;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,12 +35,12 @@ namespace SFMLCollision
 
         public static bool CircleTest(SFML.Graphics.Shape Object1, SFML.Graphics.Shape Object2)
         {
-            SFML.Window.Vector2f Obj1Size = GetSpriteSize(Object1);
-            SFML.Window.Vector2f Obj2Size = GetSpriteSize(Object2);
+            Vector2f Obj1Size = GetSpriteSize(Object1);
+            Vector2f Obj2Size = GetSpriteSize(Object2);
             float Radius1 = (Obj1Size.X + Obj1Size.Y) / 4.0f;
             float Radius2 = (Obj2Size.X + Obj2Size.Y) / 4.0f;
 
-            SFML.Window.Vector2f Distance = GetSpriteCenter(Object1) - GetSpriteCenter(Object2);
+            Vector2f Distance = GetSpriteCenter(Object1) - GetSpriteCenter(Object2);
 
             return (Distance.X * Distance.X + Distance.Y * Distance.Y <= (Radius1 + Radius2) * (Radius1 + Radius2));
         }
@@ -56,46 +57,66 @@ namespace SFMLCollision
 		    return (Distance.X * Distance.X + Distance.Y * Distance.Y <= (Radius1 + Radius2) * (Radius1 + Radius2));
 	    }
 
-
-        public static bool BoundingBoxTest(SFML.Graphics.Sprite Object1, SFML.Graphics.Sprite Object2) 
+        public static bool CircleTest(SFML.Graphics.Shape Object1, SFML.Graphics.Sprite Object2)
         {
-		    OrientedBoundingBox OBB1 = new OrientedBoundingBox(Object1);
-		    OrientedBoundingBox OBB2 = new OrientedBoundingBox(Object2);
+            SFML.Window.Vector2f Obj1Size = GetSpriteSize(Object1);
+            SFML.Window.Vector2f Obj2Size = GetSpriteSize(Object2);
+            float Radius1 = (Obj1Size.X + Obj1Size.Y) / 4.0f;
+            float Radius2 = (Obj2Size.X + Obj2Size.Y) / 4.0f;
 
-		    // Create the four distinct axes that are perpendicular to the edges of the two rectangles
-            SFML.Window.Vector2f[] Axes = new SFML.Window.Vector2f[4] 
-            {
-			    new SFML.Window.Vector2f (OBB1.Points[1].X-OBB1.Points[0].X,
-			    OBB1.Points[1].Y-OBB1.Points[0].Y),
-			    new SFML.Window.Vector2f (OBB1.Points[1].X-OBB1.Points[2].X,
-			    OBB1.Points[1].Y-OBB1.Points[2].Y),
-			    new SFML.Window.Vector2f (OBB2.Points[0].X-OBB2.Points[3].X,
-			    OBB2.Points[0].Y-OBB2.Points[3].Y),
-			    new SFML.Window.Vector2f (OBB2.Points[0].X-OBB2.Points[1].X,
-			    OBB2.Points[0].Y-OBB2.Points[1].Y)
-            };
+            SFML.Window.Vector2f Distance = GetSpriteCenter(Object1) - GetSpriteCenter(Object2);
 
-            for (int i = 0; i<4; i++) // For each axis...
-		    {
-			    float MinOBB1 = 0.0f, MaxOBB1 = 0.0f, MinOBB2 = 0.0f , MaxOBB2 = 0.0f ;
+            return (Distance.X * Distance.X + Distance.Y * Distance.Y <= (Radius1 + Radius2) * (Radius1 + Radius2));
+        }
 
-			    // ... project the points of both OBBs onto the axis ...
-			    OBB1.ProjectOntoAxis(Axes[i], ref MinOBB1, ref MaxOBB1);
-			    OBB2.ProjectOntoAxis(Axes[i], ref MinOBB2, ref MaxOBB2);
+        public static bool CircleTest(SFML.Graphics.Sprite Object1, SFML.Graphics.Shape Object2)
+        {
+            SFML.Window.Vector2f Obj1Size = GetSpriteSize(Object1);
+            SFML.Window.Vector2f Obj2Size = GetSpriteSize(Object2);
+            float Radius1 = (Obj1Size.X + Obj1Size.Y) / 4.0f;
+            float Radius2 = (Obj2Size.X + Obj2Size.Y) / 4.0f;
 
-			    // ... and check whether the outermost projected points of both OBBs overlap.
-			    // If this is not the case, the Seperating Axis Theorem states that there can be no collision between the rectangles
-			    if (!((MinOBB2<=MaxOBB1)&&(MaxOBB2>=MinOBB1)))
-				    return false;
-		    }
-		    return true;
-		}
+            SFML.Window.Vector2f Distance = GetSpriteCenter(Object1) - GetSpriteCenter(Object2);
 
+            return (Distance.X * Distance.X + Distance.Y * Distance.Y <= (Radius1 + Radius2) * (Radius1 + Radius2));
+        }
+
+
+        public static bool BoundingBoxTest(SFML.Graphics.Sprite Object1, SFML.Graphics.Sprite Object2)
+        {
+            OrientedBoundingBox OBB1 = new OrientedBoundingBox(Object1);
+            OrientedBoundingBox OBB2 = new OrientedBoundingBox(Object2);
+
+            return BoundingBoxTest(OBB1, OBB2);
+        }
+
+        public static bool BoundingBoxTest(SFML.Graphics.Sprite Object1, SFML.Graphics.Shape Object2)
+        {
+            OrientedBoundingBox OBB1 = new OrientedBoundingBox(Object1);
+            OrientedBoundingBox OBB2 = new OrientedBoundingBox(Object2);
+
+            return BoundingBoxTest(OBB1, OBB2);
+        }
+
+        public static bool BoundingBoxTest(SFML.Graphics.Shape Object1, SFML.Graphics.Sprite Object2)
+        {
+            OrientedBoundingBox OBB1 = new OrientedBoundingBox(Object1);
+            OrientedBoundingBox OBB2 = new OrientedBoundingBox(Object2);
+
+            return BoundingBoxTest(OBB1, OBB2);
+        }
+        
         public static bool BoundingBoxTest(SFML.Graphics.Shape Object1, SFML.Graphics.Shape Object2)
         {
             OrientedBoundingBox OBB1 = new OrientedBoundingBox(Object1);
             OrientedBoundingBox OBB2 = new OrientedBoundingBox(Object2);
 
+            return BoundingBoxTest(OBB1, OBB2);
+        }
+
+
+        private static bool BoundingBoxTest(OrientedBoundingBox OBB1, OrientedBoundingBox OBB2)
+        {
             // Create the four distinct axes that are perpendicular to the edges of the two rectangles
             SFML.Window.Vector2f[] Axes = new SFML.Window.Vector2f[4]
             {
@@ -124,6 +145,7 @@ namespace SFMLCollision
             }
             return true;
         }
+
 
         //public static bool PixelPerfectTest(SFML.Graphics.Sprite Object1, SFML.Graphics.Sprite Object2, byte AlphaLimit) 
         //{

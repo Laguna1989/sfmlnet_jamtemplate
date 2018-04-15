@@ -8,11 +8,11 @@ using System.Collections;
 
 namespace JamUtilities
 {
-    public class IGameObjectGroup : IGameObject
+    public class GameObjectGroup : IGameObject
     {
         public List<IGameObject> members { get; private set; }
 
-        public IGameObjectGroup()
+        public GameObjectGroup()
         {
             members = new List<IGameObject>();
         }
@@ -54,9 +54,7 @@ namespace JamUtilities
 
         public void SetPosition(Vector2f newPos)
         {
-#if DEBUG
-            Console.WriteLine("cannot set position on GameObjectGroup!");
-#endif
+            T.TraceD("cannot set position on GameObjectGroup!");
         }
 
         public void Add (IGameObject go)
@@ -72,5 +70,7 @@ namespace JamUtilities
         {
             return members.GetEnumerator();
         }
+
+        public int Count { get { return members.Count; } }
     }
 }

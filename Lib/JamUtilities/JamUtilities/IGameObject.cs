@@ -13,6 +13,7 @@ namespace JamUtilities
         void GetInput();
         void Update(TimeObject to);
         void Draw(RenderWindow rw);
+
         Vector2f GetPosition();
         void SetPosition(Vector2f newPos);
     }
